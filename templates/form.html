@@ -3,10 +3,57 @@
             <title>CPU_LOAD</title>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
         </head>
-        <body>
+       
+        <body style="text-align:center">
         Hostname do servidor: {{ hostname }} <br><br>
+        AZ do servidor: {{ AZ }}
         <form method="post">
             Duração da carga (em segundos): <input type="text" name="duration">
             <input type="submit" value="Gerar Carga">
         </form>
+        
+        <body style="text-align:center">
+    
+    <br> Hostname: {{ hostname }} <br>
+    <br> AZ: {{ AZ }} <br>
+    
+    <p>COUNTS</p>
+    <div id="counter">
+        <!-- counts -->
+    </div>
+    <!-- iframe window -->
+    <iframe id="frame" 
+            src="./show_cpu" 
+            frameborder="2"> 
+    </iframe> 
+ 
+    <script>
+        let counts = setInterval(updated);
+        let upto = 0;
+        function wait(ms){
+            var start = new Date().getTime();
+            var end = start;
+            while(end < start + ms) {
+            end = new Date().getTime();
+        }
+}
+        function updated() {
+            let count = document.getElementById("counter");
+            
+            
+            count.innerHTML = ++upto;
+            wait(1000);
+            
+            if (upto === {{ duration }}) {
+                clearInterval(counts);
+                wait(10000)
+                document.getElementById("frame").src = "./show_cpu";
+            }
+            if (upto % 10 === 0) {
+                document.getElementById("frame").src = "./show_cpu";
+            }
+        }
+        
+    </script>
+        
         </body>
