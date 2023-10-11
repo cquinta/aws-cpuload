@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag cquinta/cpuload
-      run: docker push cquinta/cpuload
+      run: docker build . --file Dockerfile --tag cquinta/cpuload 
+  
