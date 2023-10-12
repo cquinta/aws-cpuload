@@ -1,4 +1,7 @@
 flask
 psutil
 requests
+sqlalchemy
+mysql-connector-python
+flask_sqlalchemy
 
