@@ -9,7 +9,7 @@ App de teste para ELB e Auto Scaling Groups
 É necessário passar uma variável de ambiente para o container com a string de conexão por exemplo 
 ```bash
 
-docker run -p 8080:5000 -d -e DBSTRING='mysql://<usuario>:<senha>@<endpoint>:<porta>/<banco>' cquinta/aws-cpuload  
+docker run -p 8080:5000 -d -e DBSTRING='mysql://<usuario>:<senha>@<endpoint>:<porta>/<banco>' cquinta/aws-cpuload:main  
 
 ```
 
