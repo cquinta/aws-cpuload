@@ -13,11 +13,13 @@ app = Flask(__name__)
 def aws_get_metadata():
     URL_AZ = 'http://169.254.169.254/latest/meta-data/placement/availability-zone'
     URL_HOSTNAME = 'http://169.254.169.254/latest/meta-data/hostname'
+    ID=os.getenv('HOSTNAME')
     resp_az = requests.get(URL_AZ)
     resp_hostname = requests.get(URL_HOSTNAME)
     meta_fields = {
         "AZ": resp_az.text.split('\n'),
-        "hostname": resp_hostname.text.split('\n')
+        "hostname": resp_hostname.text.split('\n'),
+        "id": ID
     }
     return meta_fields
 
@@ -44,9 +46,9 @@ def form():
         for _ in range(0, multiprocessing.cpu_count()):
             process = multiprocessing.Process(target=cpu_load, args=(duration,))
             process.start()
-        return(render_template('form.html',duration=duration, hostname=info["hostname"], AZ=info["AZ"]))    
+        return(render_template('form.html',duration=duration, hostname=info["hostname"], AZ=info["AZ"], ID=info["id"]))    
     
-    return render_template('form.html', hostname=info["hostname"], AZ=info["AZ"])
+    return render_template('form.html', hostname=info["hostname"], AZ=info["AZ"], ID=info["id"])
 
 if __name__ == '__main__':
     

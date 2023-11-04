@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} {% endblock %} - BookListApp</title>
+    <title>{% block title %} {% endblock %} - CPULOAD</title>
     <style>
         .title {
             margin: 5px;
@@ -50,12 +50,6 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('index') }}">Lista de Livros</a>
-        <a href="{{ url_for('books_create') }}">Create</a>
-        
-    </nav>
-    <hr>
     <div class="content">
         {% block content %} {% endblock %}
     </div>
